@@ -1,7 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
-const WeddingHero = () => {
+interface WeddingHeroProps {
+  weddingData: {
+    names: string;
+    date: string;
+    time: string;
+    venue: string;
+    location: string;
+    quote: string;
+  };
+}
+
+const WeddingHero = ({ weddingData }: WeddingHeroProps) => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({ behavior: "smooth" });
@@ -13,7 +24,7 @@ const WeddingHero = () => {
         <div className="space-y-8">
           <div className="space-y-4">
             <h1 className="font-cormorant text-6xl md:text-7xl font-bold text-charcoal mb-2">
-              Анна & Михаил
+              {weddingData.names}
             </h1>
             <div className="w-32 h-px bg-gradient-to-r from-transparent via-gold to-transparent mx-auto"></div>
             <p className="text-lg text-medium-gray font-light tracking-wider">
@@ -24,25 +35,19 @@ const WeddingHero = () => {
           <div className="space-y-6">
             <div className="space-y-2">
               <p className="font-cormorant text-3xl text-charcoal">
-                15 августа 2024
+                {weddingData.date}
               </p>
-              <p className="text-medium-gray">в 18:00</p>
+              <p className="text-medium-gray">{weddingData.time}</p>
             </div>
 
             <div className="space-y-2">
-              <p className="font-semibold text-charcoal">
-                Загородный парк-отель "Усадьба"
-              </p>
-              <p className="text-medium-gray text-sm">
-                Московская область, Красногорский район
-              </p>
+              <p className="font-semibold text-charcoal">{weddingData.venue}</p>
+              <p className="text-medium-gray text-sm">{weddingData.location}</p>
             </div>
           </div>
 
           <div className="space-y-4">
-            <p className="text-medium-gray italic">
-              "Любовь не знает границ, времени и расстояний"
-            </p>
+            <p className="text-medium-gray italic">"{weddingData.quote}"</p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
